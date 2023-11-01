@@ -15,6 +15,7 @@ public class Password {
     String[] Numbers = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
     String[] Colors = {"white","yellow","red","blue","pink","brown","green","black","purple","orange",};
     String[] Grades = {"9-grade", "10-grade", "11-grade", "12-grade"};
+    String[] Lower_letters = {"q","w","e","r","t","y","u","i","o","p","a","s","d","f","g","h","j","k","l","z","x","c","v","b","n","m"};
     String user_password = "";
     Scanner Leedor = new Scanner(System.in);
 
@@ -95,12 +96,28 @@ public class Password {
                     if (number >=1) { // Country continue                   
                         if (user_password.contains("-5")){ // equation continue
                             if (user_password.toLowerCase().contains("11-grade")) {
-                              System.out.println("That is a Great Password");
-                              break;
+                              number = 0;
+                              for (String i : Lower_letters) {
+                                if (user_password.contains(i)) {
+                                  number += 1;
+                                }
+                              }
+                              if (number >= 1) {
+                                System.out.println(" Thats A Great Password");
+                                break;
+                              }
+                              else{
+                                try {
+                                throw new RuntimeException("Your password must at least have a lowercase letter, ");
+                                }
+                            catch (Exception e) {
+                                System.out.println(e + " Please try again");
+                            }
+                              }
                             }
                             else if (user_password.toLowerCase().contains("10-grade") || user_password.toLowerCase().contains("9-grade") || user_password.toLowerCase().contains("12-grade")) {
                                try {
-                                throw new RuntimeException("You must answer the question honestly");
+                                throw new RuntimeException("You must answer the question honestly, ");
                                 }
                             catch (Exception e) {
                                 System.out.println(e + " Please try again");
